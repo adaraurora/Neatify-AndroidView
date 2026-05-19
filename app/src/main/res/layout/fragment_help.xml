@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bantuan"
+            android:textColor="@color/text_dark"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ada masalah? Tenang, jangan langsung panik dulu."
+            android:textColor="@color/text_gray"
+            android:textSize="14sp"
+            android:layout_marginTop="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg_promo"
+            android:elevation="3dp"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer Service"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Butuh bantuan soal pesanan, pembayaran, atau status laundry?"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:layout_marginTop="6dp" />
+
+            <TextView
+                android:id="@+id/btnChatAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card"
+                android:gravity="center"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:text="Chat Admin"
+                android:textColor="@color/blue_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pertanyaan Umum"
+            android:textColor="@color/text_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="26dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card"
+            android:elevation="3dp"
+            android:padding="16dp"
+            android:text="Bagaimana cara membuat pesanan?\n\nKlik tombol + di tengah navigasi bawah, pilih layanan, isi berat cucian dan alamat, lalu lanjut ke pembayaran."
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card"
+            android:elevation="3dp"
+            android:padding="16dp"
+            android:text="Bagaimana melihat status laundry?\n\nBuka menu Pesanan atau lihat card Pesanan Aktif di halaman Home. Status akan berubah setelah admin memperbaruinya."
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card"
+            android:elevation="3dp"
+            android:padding="16dp"
+            android:text="Metode pembayaran apa saja yang tersedia?\n\nSaat ini tersedia Saldo Dompet, Transfer Bank, dan E-Wallet. Untuk demo, metode ini tersimpan ke database tanpa payment gateway asli."
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card"
+            android:elevation="3dp"
+            android:padding="16dp"
+            android:text="Apa arti status pesanan?\n\nDijemput: cucian akan diambil.\nDicuci: cucian sedang diproses.\nSetrika: cucian sedang disetrika.\nDikirim: cucian sedang dikirim.\nSelesai: pesanan sudah selesai."
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_card"
+            android:elevation="3dp"
+            android:padding="16dp"
+            android:text="Bagaimana kalau pesanan dibatalkan?\n\nPesanan yang dibatalkan akan masuk ke tab Dibatalkan di menu Pesanan Saya."
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</ScrollView>

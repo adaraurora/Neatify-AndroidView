@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:id="@+id/tvBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="←"
+            android:textColor="@color/blue_primary"
+            android:textSize="28sp"
+            android:layout_marginTop="22dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kelola Pesanan"
+            android:textAlignment="center"
+            android:textColor="@color/text_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="-28dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:background="@drawable/bg_card"
+            android:elevation="3dp"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/tvKodeOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#ORD-00000"
+                android:textColor="@color/text_dark"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_status_blue"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Dijemput"
+                android:textColor="@color/blue_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Detail pesanan"
+                android:textColor="@color/text_dark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubah Status"
+            android:textColor="@color/text_dark"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginTop="26dp" />
+
+        <Button
+            android:id="@+id/btnDijemput"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:text="Dijemput"
+            android:backgroundTint="@color/blue_primary"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnDicuci"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Sedang Dicuci"
+            android:backgroundTint="@color/blue_primary"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnSetrika"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Disetrika"
+            android:backgroundTint="@color/blue_primary"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnDikirim"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Dikirim"
+            android:backgroundTint="@color/blue_primary"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnSelesai"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Selesai"
+            android:backgroundTint="#2E7D32"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnDibatalkan"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:text="Batalkan Pesanan"
+            android:backgroundTint="#C62828"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</ScrollView>

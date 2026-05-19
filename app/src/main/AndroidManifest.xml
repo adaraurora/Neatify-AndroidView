@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Neatify"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Neatify"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.WalletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TopUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OnboardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminUserDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.FormServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminOrderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DetailOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CreateOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
