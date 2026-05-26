@@ -4,92 +4,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="210dp">
+            android:layout_height="118dp"
+            android:layout_marginTop="20dp">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/auth_side" />
+                android:layout_width="118dp"
+                android:layout_height="118dp"
+                android:layout_gravity="top"
+                android:adjustViewBounds="true"
+                android:scaleType="fitStart"
+                android:src="@drawable/neatify_logo" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#22FFFFFF" />
-
-            <TextView
-                android:id="@+id/tvBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="‹"
-                android:textColor="@color/blue_primary"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="118dp"
+                android:layout_height="118dp"
+                android:layout_gravity="end|bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/register_img" />
 
         </FrameLayout>
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="-30dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_auth_card"
-            android:elevation="3dp"
-            android:orientation="vertical"
-            android:padding="22dp">
+            android:layout_marginTop="12dp"
+            android:text="Buat Akun Baru"
+            android:textColor="@color/text_dark"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buat Akun Baru"
-                android:textColor="@color/blue_primary"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Daftar mudah, laundry beres dalam hitungan klik!"
+            android:textColor="@color/text_gray"
+            android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="260dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Daftarkan dirimu untuk mulai menggunakan Neatify"
-                android:textColor="@color/text_gray"
-                android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/bg_input"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_user" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/bg_input"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_user" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Lengkap"
+                    android:textColor="@color/text_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etName"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:hint="Nama Lengkap"
+                    android:hint="Masukkan nama lengkap"
                     android:inputType="textPersonName"
                     android:padding="0dp"
                     android:textColor="@color/text_dark"
@@ -98,29 +102,46 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_input"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+        </LinearLayout>
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_phone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_phone" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomor Telepon"
+                    android:textColor="@color/text_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:hint="Nomor Telepon"
+                    android:hint="08xxxxxxxxxx"
                     android:inputType="phone"
                     android:padding="0dp"
                     android:textColor="@color/text_dark"
@@ -129,29 +150,46 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_input"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+        </LinearLayout>
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_email" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_email" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="@color/text_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:hint="Email (Opsional)"
+                    android:hint="nama@email.com"
                     android:inputType="textEmailAddress"
                     android:padding="0dp"
                     android:textColor="@color/text_dark"
@@ -160,117 +198,151 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_input"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+        </LinearLayout>
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_lock" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_lock" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textColor="@color/text_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etPassword"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:hint="Password"
+                    android:hint="Masukkan password"
                     android:inputType="textPassword"
                     android:padding="0dp"
                     android:textColor="@color/text_dark"
                     android:textColorHint="@color/text_gray"
                     android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/ivRegisterPasswordToggle"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:padding="2dp"
-                    android:src="@drawable/ic_eye_off" />
-
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_input"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+            <ImageView
+                android:id="@+id/ivRegisterPasswordToggle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="3dp"
+                android:src="@drawable/ic_eye_off" />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_lock" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_lock" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Konfirmasi Password"
+                    android:textColor="@color/text_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etConfirmPassword"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:hint="Konfirmasi Password"
+                    android:hint="Ulangi password"
                     android:inputType="textPassword"
                     android:padding="0dp"
                     android:textColor="@color/text_dark"
                     android:textColorHint="@color/text_gray"
                     android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/ivRegisterConfirmPasswordToggle"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:padding="2dp"
-                    android:src="@drawable/ic_eye_off" />
-
             </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/cbTerms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:buttonTint="@color/blue_primary"
-                android:text="Saya setuju dengan Syarat dan Ketentuan dan Kebijakan Privasi"
-                android:textColor="@color/text_gray"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="18dp"
-                android:backgroundTint="@color/blue_primary"
-                android:text="Daftar"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvLogin"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="18dp"
-                android:background="@drawable/bg_input"
-                android:gravity="center"
-                android:text="Sudah punya akun? Masuk di sini"
-                android:textColor="@color/blue_primary"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/ivRegisterConfirmPasswordToggle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="3dp"
+                android:src="@drawable/ic_eye_off" />
 
         </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cbTerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:buttonTint="@color/blue_primary"
+            android:text="Saya setuju dengan Syarat &amp; Ketentuan dan Kebijakan Privasi"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_blue_button"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:text="Daftar Sekarang"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="Sudah punya akun? Masuk di sini"
+            android:textColor="@color/blue_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

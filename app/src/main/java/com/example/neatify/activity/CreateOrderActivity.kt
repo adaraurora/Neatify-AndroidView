@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.neatify.adapter.SelectServiceAdapter
 import com.example.neatify.api.RetrofitClient
 import com.example.neatify.databinding.ActivityCreateOrderBinding
-import com.example.neatify.model.OrderRequest
-import com.example.neatify.model.OrderResponse
 import com.example.neatify.model.Service
 import com.example.neatify.model.ServiceResponse
 import com.example.neatify.utils.SessionManager
@@ -43,33 +41,37 @@ class CreateOrderActivity : AppCompatActivity() {
         loadServices()
 
         binding.btnBuatPesanan.setOnClickListener {
-            createOrder()
+            goToPayment()
         }
     }
 
     private fun setupRecyclerView() {
         binding.rvSelectServices.layoutManager = GridLayoutManager(this, 2)
+        binding.rvSelectServices.setHasFixedSize(false)
     }
 
     private fun setupBeratButton() {
-        binding.tvBerat.text = berat.toString()
+        updateBeratText()
 
         binding.btnPlus.setOnClickListener {
-            berat += 0.5
-            updateBerat()
+            if (berat < 30.0) {
+                berat += 0.5
+                updateBeratText()
+                updateEstimasi()
+            }
         }
 
         binding.btnMinus.setOnClickListener {
             if (berat > 1.0) {
                 berat -= 0.5
-                updateBerat()
+                updateBeratText()
+                updateEstimasi()
             }
         }
     }
 
-    private fun updateBerat() {
-        binding.tvBerat.text = berat.toString()
-        updateEstimasi()
+    private fun updateBeratText() {
+        binding.tvBerat.text = String.format("%.1f", berat)
     }
 
     private fun updateEstimasi() {
@@ -81,7 +83,7 @@ class CreateOrderActivity : AppCompatActivity() {
             0
         }
 
-        binding.tvEstimasi.text = "Rp ${formatRupiah(estimasi)}"
+        binding.tvEstimasi.text = "Rp${formatRupiah(estimasi)}"
     }
 
     private fun loadServices() {
@@ -95,13 +97,22 @@ class CreateOrderActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val services = response.body()?.data ?: emptyList()
 
+                        if (services.isEmpty()) {
+                            Toast.makeText(
+                                this@CreateOrderActivity,
+                                "Data layanan masih kosong",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            return
+                        }
+
                         binding.rvSelectServices.adapter = SelectServiceAdapter(services) { service ->
                             selectedService = service
                             updateEstimasi()
 
                             Toast.makeText(
                                 this@CreateOrderActivity,
-                                "Pilih: ${service.nama_layanan}",
+                                "${service.nama_layanan} dipilih",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -117,25 +128,30 @@ class CreateOrderActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<ServiceResponse>, t: Throwable) {
                     Toast.makeText(
                         this@CreateOrderActivity,
-                        "Gagal konek: ${t.message}",
+                        "Gagal konek layanan: ${t.message}",
                         Toast.LENGTH_LONG
                     ).show()
                 }
             })
     }
 
-    private fun createOrder() {
+    private fun goToPayment() {
         val service = selectedService
         val alamat = binding.etAlamat.text.toString().trim()
         val catatan = binding.etCatatan.text.toString().trim()
 
         if (service == null) {
-            Toast.makeText(this, "Pilih layanan dulu", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Pilih layanan dulu, jangan asal nekat.", Toast.LENGTH_SHORT).show()
             return
         }
 
         if (alamat.isEmpty()) {
             binding.etAlamat.error = "Alamat wajib diisi"
+            return
+        }
+
+        if (estimasi <= 0) {
+            Toast.makeText(this, "Estimasi biaya belum valid", Toast.LENGTH_SHORT).show()
             return
         }
 

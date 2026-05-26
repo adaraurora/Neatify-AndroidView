@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadFragment(HomeFragment())
+        binding.bottomNavigation.selectedItemId = R.id.nav_home
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {

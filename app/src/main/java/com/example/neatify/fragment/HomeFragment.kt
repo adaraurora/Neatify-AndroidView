@@ -1,27 +1,27 @@
 package com.example.neatify.fragment
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.content.Intent
-import android.graphics.Color
-import android.widget.TextView
-import com.example.neatify.activity.DetailOrderActivity
-import com.example.neatify.model.Order
-import com.example.neatify.model.OrderListResponse
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.neatify.R
+import com.example.neatify.activity.DetailOrderActivity
+import com.example.neatify.activity.NotificationActivity
+import com.example.neatify.activity.WalletActivity
 import com.example.neatify.adapter.ServiceAdapter
 import com.example.neatify.api.RetrofitClient
 import com.example.neatify.databinding.FragmentHomeBinding
+import com.example.neatify.model.LoginResponse
+import com.example.neatify.model.Order
+import com.example.neatify.model.OrderListResponse
 import com.example.neatify.model.ServiceResponse
 import com.example.neatify.utils.SessionManager
-import com.example.neatify.activity.NotificationActivity
-import com.example.neatify.activity.WalletActivity
-import com.example.neatify.model.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,14 +42,24 @@ class HomeFragment : Fragment() {
 
         session = SessionManager(requireContext())
 
-        binding.tvGreeting.text = "Selamat Pagi, ${session.getName()}"
-        binding.tvHeadline.text = "Siap tampil rapi hari ini?"
-
+        setupGreeting()
+        setupClickListener()
         setupRecyclerView()
-        loadServices()
+
         loadProfile()
+        loadServices()
         loadActiveOrder()
 
+        return binding.root
+    }
+
+    private fun setupGreeting() {
+        val name = session.getName().ifEmpty { "Adara" }
+        binding.tvGreeting.text = "Selamat Pagi, $name!"
+        binding.tvHeadline.text = "Siap tampil rapi hari ini?"
+    }
+
+    private fun setupClickListener() {
         binding.ivNotif.setOnClickListener {
             startActivity(Intent(requireContext(), NotificationActivity::class.java))
         }
@@ -58,19 +68,13 @@ class HomeFragment : Fragment() {
             startActivity(Intent(requireContext(), WalletActivity::class.java))
         }
 
-        binding.cardActiveOrder.visibility = View.VISIBLE
-        binding.tvNoActiveOrder.visibility = View.GONE
-
-        binding.tvActiveKodeOrder.text = "#TEST-123"
-        binding.tvActiveOrderStatus.text = "TEST STATUS"
-        binding.tvActiveOrderDesc.text = "TEST Layanan · 1.0kg"
-        binding.tvActiveOrderTotal.text = "Rp99.000"
-
-        return binding.root
+        binding.tvRiwayat.setOnClickListener {
+            startActivity(Intent(requireContext(), WalletActivity::class.java))
+        }
     }
 
     private fun setupRecyclerView() {
-        binding.rvServices.layoutManager = GridLayoutManager(requireContext(), 4)
+        binding.rvServices.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.rvServices.setHasFixedSize(false)
     }
 
@@ -82,38 +86,26 @@ class HomeFragment : Fragment() {
                     call: Call<ServiceResponse>,
                     response: Response<ServiceResponse>
                 ) {
-                    Log.d("SERVICE_API", "Code: ${response.code()}")
-                    Log.d("SERVICE_API", "Body: ${response.body()}")
-                    Log.d("SERVICE_API", "Error: ${response.errorBody()?.string()}")
-
                     if (response.isSuccessful) {
                         val services = response.body()?.data ?: emptyList()
-
-                        Toast.makeText(
-                            requireContext(),
-                            "Jumlah layanan: ${services.size}",
-                            Toast.LENGTH_SHORT
-                        ).show()
 
                         binding.rvServices.adapter = ServiceAdapter(services) { service ->
                             Toast.makeText(
                                 requireContext(),
-                                "Pilih: ${service.nama_layanan}",
+                                "${service.nama_layanan} dipilih",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Gagal ambil layanan. Code: ${response.code()}",
-                            Toast.LENGTH_LONG
+                            "Gagal mengambil layanan",
+                            Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ServiceResponse>, t: Throwable) {
-                    Log.e("SERVICE_API", "Failure: ${t.message}", t)
-
                     Toast.makeText(
                         requireContext(),
                         "Gagal konek layanan: ${t.message}",
@@ -123,9 +115,30 @@ class HomeFragment : Fragment() {
             })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun loadProfile() {
+        val userId = session.getUserId()
+
+        RetrofitClient.instance.getProfile(userId)
+            .enqueue(object : Callback<LoginResponse> {
+
+                override fun onResponse(
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>
+                ) {
+                    if (response.isSuccessful && response.body()?.status == true) {
+                        val user = response.body()?.data
+
+                        if (user != null) {
+                            binding.tvSaldo.text = "Rp${formatRupiah(user.saldo ?: 0)}"
+                            binding.tvPoin.text = "${user.poin ?: 0}"
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    // Sengaja tidak pakai Toast biar home tidak cerewet.
+                }
+            })
     }
 
     private fun loadActiveOrder() {
@@ -168,7 +181,7 @@ class HomeFragment : Fragment() {
 
         binding.tvActiveKodeOrder.text = "#${order.kode_order ?: "ORD-${order.id}"}"
         binding.tvActiveOrderStatus.text = formatStatus(order.status)
-        binding.tvActiveOrderDesc.text = "${order.layanan ?: "-"} · ${order.berat}kg"
+        binding.tvActiveOrderDesc.text = "${order.layanan ?: "Laundry"} · ${order.berat}kg"
         binding.tvActiveOrderTotal.text = "Rp${formatRupiah(order.total_harga)}"
 
         updateHomeProgress(order.status)
@@ -191,27 +204,31 @@ class HomeFragment : Fragment() {
         resetStep(binding.homeStepSetrika)
         resetStep(binding.homeStepDikirim)
 
-        when (status) {
+        when (status?.lowercase()?.trim()) {
             "dijemput" -> {
                 activeStep(binding.homeStepDijemput)
             }
 
-            "dicuci" -> {
+            "dicuci", "sedang dicuci" -> {
                 activeStep(binding.homeStepDijemput)
                 activeStep(binding.homeStepDicuci)
             }
 
-            "setrika" -> {
+            "setrika", "disetrika" -> {
                 activeStep(binding.homeStepDijemput)
                 activeStep(binding.homeStepDicuci)
                 activeStep(binding.homeStepSetrika)
             }
 
-            "dikirim", "selesai" -> {
+            "dikirim", "diantar", "selesai" -> {
                 activeStep(binding.homeStepDijemput)
                 activeStep(binding.homeStepDicuci)
                 activeStep(binding.homeStepSetrika)
                 activeStep(binding.homeStepDikirim)
+            }
+
+            else -> {
+                activeStep(binding.homeStepDijemput)
             }
         }
     }
@@ -227,11 +244,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun formatStatus(status: String?): String {
-        return when (status) {
+        return when (status?.lowercase()?.trim()) {
             "dijemput" -> "Dijemput"
-            "dicuci" -> "Sedang Dicuci"
-            "setrika" -> "Disetrika"
-            "dikirim" -> "Dikirim"
+            "dicuci", "sedang dicuci" -> "Sedang Dicuci"
+            "setrika", "disetrika" -> "Disetrika"
+            "dikirim", "diantar" -> "Dikirim"
             "selesai" -> "Selesai"
             "dibatalkan" -> "Dibatalkan"
             else -> "Diproses"
@@ -251,26 +268,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun loadProfile() {
-        RetrofitClient.instance.getProfile(session.getUserId())
-            .enqueue(object : Callback<LoginResponse> {
-                override fun onResponse(
-                    call: Call<LoginResponse>,
-                    response: Response<LoginResponse>
-                ) {
-                    if (response.isSuccessful && response.body()?.status == true) {
-                        val user = response.body()?.data
-
-                        if (user != null) {
-                            binding.tvSaldo.text = "Rp${formatRupiah(user.saldo ?: 0)}"
-                            binding.tvPoin.text = "${user.poin ?: 0}"
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    // diam aja, jangan semua error harus drama Toast
-                }
-            })
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

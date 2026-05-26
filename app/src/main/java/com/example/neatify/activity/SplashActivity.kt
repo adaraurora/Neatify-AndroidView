@@ -23,11 +23,9 @@ class SplashActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (session.isLogin()) {
-                if (session.getRole() == "admin") {
-                    startActivity(Intent(this, AdminMainActivity::class.java))
-                } else {
-                    startActivity(Intent(this, MainActivity::class.java))
-                }
+                // Android hanya untuk pelanggan.
+                // Mau role apa pun, masuknya ke MainActivity.
+                startActivity(Intent(this, MainActivity::class.java))
             } else {
                 startActivity(Intent(this, OnboardingActivity::class.java))
             }

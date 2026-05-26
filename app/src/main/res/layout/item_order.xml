@@ -2,77 +2,93 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardOrder"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="14dp"
     android:background="@drawable/bg_card"
-    android:elevation="3dp"
-    android:orientation="vertical"
-    android:padding="18dp">
+    android:elevation="5dp"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bg_splash_laundry" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_marginStart="14dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvKodeOrder"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="#ORD-99210"
-            android:textColor="@color/text_dark"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvKodeOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="#ORD-00000"
+                android:textColor="@color/text_dark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:background="@drawable/bg_status_blue"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="Sedang Dicuci"
+                android:textColor="@color/blue_primary"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:background="@drawable/bg_status_blue"
-            android:gravity="center"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="Sedang Dicuci"
-            android:textColor="@color/blue_primary"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvLayanan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Cuci &amp; Setrika · 3.5kg"
-        android:textColor="@color/text_dark"
-        android:textSize="13sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvEstimasi"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Estimasi selesai\nHari ini, 15.00"
-            android:textColor="@color/text_gray"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/tvTotal"
+            android:id="@+id/tvLayanan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rp52.500"
+            android:layout_marginTop="5dp"
+            android:text="Cuci &amp; Setrika · 3.5kg"
             android:textColor="@color/text_dark"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvEstimasi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Estimasi Selesai\nHari ini, 15.00"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp52.500"
+                android:textColor="@color/blue_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

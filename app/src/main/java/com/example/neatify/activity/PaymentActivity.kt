@@ -30,7 +30,8 @@ class PaymentActivity : AppCompatActivity() {
     private var diskon: Int = 0
     private var total: Int = 0
 
-    private var selectedPayment: String = "Saldo Dompet"
+    private var selectedPayment: String = "wallet"
+    private var isCreatingOrder: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +40,10 @@ class PaymentActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         getIntentData()
+        validateIntentData()
         showData()
         setupPaymentMethod()
+        updatePaymentStyle()
 
         binding.tvBack.setOnClickListener {
             finish()
@@ -64,9 +67,20 @@ class PaymentActivity : AppCompatActivity() {
         total = subtotal + ongkir - diskon
     }
 
+    private fun validateIntentData() {
+        if (userId == 0 || serviceId == 0 || alamat.isEmpty() || subtotal <= 0) {
+            Toast.makeText(
+                this,
+                "Data pembayaran tidak valid",
+                Toast.LENGTH_SHORT
+            ).show()
+            finish()
+        }
+    }
+
     private fun showData() {
         binding.tvServiceName.text = serviceName
-        binding.tvBerat.text = "Berat: $berat kg"
+        binding.tvBerat.text = "Berat: ${String.format("%.1f", berat)} kg"
         binding.tvAlamat.text = "Alamat: $alamat"
 
         binding.tvSubtotal.text = "Subtotal: Rp${formatRupiah(subtotal)}"
@@ -77,17 +91,17 @@ class PaymentActivity : AppCompatActivity() {
 
     private fun setupPaymentMethod() {
         binding.paySaldo.setOnClickListener {
-            selectedPayment = "Saldo Dompet"
+            selectedPayment = "wallet"
             updatePaymentStyle()
         }
 
         binding.payTransfer.setOnClickListener {
-            selectedPayment = "Transfer Bank"
+            selectedPayment = "transfer"
             updatePaymentStyle()
         }
 
         binding.payEwallet.setOnClickListener {
-            selectedPayment = "E-Wallet"
+            selectedPayment = "ewallet"
             updatePaymentStyle()
         }
     }
@@ -101,29 +115,42 @@ class PaymentActivity : AppCompatActivity() {
         binding.payTransfer.setTextColor(resources.getColor(R.color.text_dark, null))
         binding.payEwallet.setTextColor(resources.getColor(R.color.text_dark, null))
 
+        binding.paySaldo.setTypeface(null, android.graphics.Typeface.NORMAL)
+        binding.payTransfer.setTypeface(null, android.graphics.Typeface.NORMAL)
+        binding.payEwallet.setTypeface(null, android.graphics.Typeface.NORMAL)
+
         when (selectedPayment) {
-            "Saldo Dompet" -> {
+            "wallet" -> {
                 binding.paySaldo.setBackgroundResource(R.drawable.bg_blue_light_card)
                 binding.paySaldo.setTextColor(resources.getColor(R.color.blue_primary, null))
+                binding.paySaldo.setTypeface(null, android.graphics.Typeface.BOLD)
             }
 
-            "Transfer Bank" -> {
+            "transfer" -> {
                 binding.payTransfer.setBackgroundResource(R.drawable.bg_blue_light_card)
                 binding.payTransfer.setTextColor(resources.getColor(R.color.blue_primary, null))
+                binding.payTransfer.setTypeface(null, android.graphics.Typeface.BOLD)
             }
 
-            "E-Wallet" -> {
+            "ewallet" -> {
                 binding.payEwallet.setBackgroundResource(R.drawable.bg_blue_light_card)
                 binding.payEwallet.setTextColor(resources.getColor(R.color.blue_primary, null))
+                binding.payEwallet.setTypeface(null, android.graphics.Typeface.BOLD)
             }
         }
     }
 
     private fun createOrder() {
+        if (isCreatingOrder) return
+
         if (userId == 0 || serviceId == 0) {
             Toast.makeText(this, "Data pesanan tidak valid", Toast.LENGTH_SHORT).show()
             return
         }
+
+        isCreatingOrder = true
+        binding.btnPay.isEnabled = false
+        binding.btnPay.text = "Memproses..."
 
         val request = OrderRequest(
             user_id = userId,
@@ -141,6 +168,10 @@ class PaymentActivity : AppCompatActivity() {
                     call: Call<OrderResponse>,
                     response: Response<OrderResponse>
                 ) {
+                    isCreatingOrder = false
+                    binding.btnPay.isEnabled = true
+                    binding.btnPay.text = "Bayar dan Buat Pesanan"
+
                     if (response.isSuccessful && response.body()?.status == true) {
                         Toast.makeText(
                             this@PaymentActivity,
@@ -148,10 +179,20 @@ class PaymentActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        val intent = Intent(this@PaymentActivity, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                        startActivity(intent)
-                        finish()
+                        val orderId = response.body()?.data?.id ?: 0
+
+                        if (orderId != 0) {
+                            val intent = Intent(this@PaymentActivity, DetailOrderActivity::class.java)
+                            intent.putExtra("ORDER_ID", orderId)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            val intent = Intent(this@PaymentActivity, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            finish()
+                        }
                     } else {
                         val errorText = response.errorBody()?.string()
                         val message = response.body()?.message ?: errorText ?: "Gagal membuat pesanan"
@@ -165,6 +206,10 @@ class PaymentActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<OrderResponse>, t: Throwable) {
+                    isCreatingOrder = false
+                    binding.btnPay.isEnabled = true
+                    binding.btnPay.text = "Bayar dan Buat Pesanan"
+
                     Toast.makeText(
                         this@PaymentActivity,
                         "Gagal konek: ${t.message}",

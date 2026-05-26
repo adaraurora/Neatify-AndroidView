@@ -4,32 +4,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="22dp">
+        android:paddingStart="22dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="34dp">
 
-        <TextView
-            android:id="@+id/tvBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="←"
-            android:textColor="@color/blue_primary"
-            android:textSize="28sp"
-            android:layout_marginTop="22dp" />
-
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Buat Pesanan"
-            android:textAlignment="center"
-            android:textColor="@color/text_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="-28dp" />
+            android:layout_height="70dp">
+
+            <TextView
+                android:id="@+id/tvBack"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:background="@drawable/bg_input"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:text="‹"
+                android:textColor="@color/blue_primary"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="145dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/neatify_logo" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="154dp"
+            android:layout_marginTop="12dp">
+
+            <LinearLayout
+                android:layout_width="215dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buat Pesanan"
+                    android:textColor="@color/text_dark"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Pilih layanan, isi alamat, lalu lanjut ke pembayaran."
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="178dp"
+                android:layout_height="145dp"
+                android:layout_gravity="end|bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bg_splash_laundry" />
+
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,8 +88,7 @@
             android:text="Pilih Layanan"
             android:textColor="@color/text_dark"
             android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="42dp" />
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSelectServices"
@@ -47,148 +97,177 @@
             android:layout_marginTop="14dp"
             android:nestedScrollingEnabled="false" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Detail Cucian"
-            android:textColor="@color/text_dark"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="26dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Berat"
-            android:textColor="@color/text_gray"
-            android:textSize="13sp"
-            android:layout_marginTop="14dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_card"
-            android:elevation="2dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp">
-
-            <TextView
-                android:id="@+id/btnMinus"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:gravity="center"
-                android:text="-"
-                android:textColor="@color/blue_primary"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/tvBerat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1.0"
-                android:textColor="@color/text_dark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="kg"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/btnPlus"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="12dp"
-                android:gravity="center"
-                android:text="+"
-                android:textColor="@color/blue_primary"
-                android:textSize="22sp" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Alamat"
-            android:textColor="@color/text_gray"
-            android:textSize="13sp"
-            android:layout_marginTop="16dp" />
-
-        <EditText
-            android:id="@+id/etAlamat"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_card"
-            android:hint="Contoh: Jl. Mawar No. 10"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="@color/text_dark"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Catatan (Opsional)"
-            android:textColor="@color/text_gray"
-            android:textSize="13sp"
-            android:layout_marginTop="16dp" />
-
-        <EditText
-            android:id="@+id/etCatatan"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_card"
-            android:gravity="top"
-            android:hint="Contoh: Noda di kerah"
-            android:padding="16dp"
-            android:textColor="@color/text_dark"
-            android:textSize="14sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="86dp"
+            android:layout_height="142dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_card"
-            android:elevation="2dp"
+            android:elevation="5dp"
             android:orientation="vertical"
             android:padding="18dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estimasi Biaya"
+                android:text="Detail Cucian"
+                android:textColor="@color/text_dark"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Berat Cucian"
                 android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_blue_light_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
+
+                <TextView
+                    android:id="@+id/btnMinus"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_card"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/blue_primary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBerat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1.0"
+                    android:textColor="@color/text_dark"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kg"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnPlus"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_card"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/blue_primary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="Alamat Penjemputan"
+            android:textColor="@color/text_dark"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etAlamat"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_input"
+            android:hint="Contoh: Jl. Mawar No. 10"
+            android:inputType="textPostalAddress"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="@color/text_dark"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Catatan"
+            android:textColor="@color/text_dark"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etCatatan"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_input"
+            android:gravity="top"
+            android:hint="Opsional, contoh: noda di kerah"
+            android:inputType="textMultiLine"
+            android:padding="18dp"
+            android:textColor="@color/text_dark"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_promo"
+            android:elevation="5dp"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estimasi Biaya Laundry"
+                android:textColor="@color/white"
                 android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/tvEstimasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp 0"
-                android:textColor="@color/text_dark"
-                android:textSize="22sp"
+                android:layout_marginTop="6dp"
+                android:text="Rp0"
+                android:textColor="@color/white"
+                android:textSize="28sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum termasuk ongkir"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
-        <Button
+        <TextView
             android:id="@+id/btnBuatPesanan"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="58dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="28dp"
-            android:backgroundTint="@color/blue_primary"
-            android:text="Lanjutkan"
+            android:background="@drawable/bg_blue_button"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:text="Lanjut ke Pembayaran"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />

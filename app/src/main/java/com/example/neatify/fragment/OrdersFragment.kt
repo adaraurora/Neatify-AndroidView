@@ -41,8 +41,10 @@ class OrdersFragment : Fragment() {
         session = SessionManager(requireContext())
 
         binding.rvOrders.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvOrders.setHasFixedSize(false)
 
         setupTabs()
+        updateTabStyle()
         loadOrders()
 
         return binding.root
@@ -80,11 +82,7 @@ class OrdersFragment : Fragment() {
                         allOrders = response.body()?.data ?: emptyList()
                         filterOrders()
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Gagal mengambil pesanan",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        showEmpty("Gagal mengambil pesanan")
                     }
                 }
 
@@ -94,6 +92,7 @@ class OrdersFragment : Fragment() {
                         "Gagal konek pesanan: ${t.message}",
                         Toast.LENGTH_LONG
                     ).show()
+                    showEmpty("Belum bisa memuat pesanan.")
                 }
             })
     }
@@ -101,23 +100,23 @@ class OrdersFragment : Fragment() {
     private fun filterOrders() {
         val filtered = when (selectedTab) {
             "aktif" -> allOrders.filter {
-                it.status != "selesai" && it.status != "dibatalkan"
+                val status = normalizeStatus(it.status)
+                status != "selesai" && status != "dibatalkan"
             }
 
             "selesai" -> allOrders.filter {
-                it.status == "selesai"
+                normalizeStatus(it.status) == "selesai"
             }
 
             "dibatalkan" -> allOrders.filter {
-                it.status == "dibatalkan"
+                normalizeStatus(it.status) == "dibatalkan"
             }
 
             else -> allOrders
         }
 
         if (filtered.isEmpty()) {
-            binding.rvOrders.visibility = View.GONE
-            binding.tvEmpty.visibility = View.VISIBLE
+            showEmpty("Belum ada pesanan di kategori ini.")
         } else {
             binding.rvOrders.visibility = View.VISIBLE
             binding.tvEmpty.visibility = View.GONE
@@ -128,6 +127,12 @@ class OrdersFragment : Fragment() {
                 startActivity(intent)
             }
         }
+    }
+
+    private fun showEmpty(message: String) {
+        binding.rvOrders.visibility = View.GONE
+        binding.tvEmpty.visibility = View.VISIBLE
+        binding.tvEmpty.text = message
     }
 
     private fun updateTabStyle() {
@@ -154,8 +159,19 @@ class OrdersFragment : Fragment() {
         tab.setTypeface(null, android.graphics.Typeface.NORMAL)
     }
 
+    private fun normalizeStatus(status: String?): String {
+        return status
+            ?.lowercase()
+            ?.trim()
+            ?.replace("sedang dicuci", "dicuci")
+            ?.replace("disetrika", "setrika")
+            ?.replace("diantar", "dikirim")
+            ?: ""
+    }
+
     override fun onResume() {
         super.onResume()
+
         if (_binding != null) {
             loadOrders()
         }

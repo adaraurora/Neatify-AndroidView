@@ -98,6 +98,18 @@ class LoginActivity : AppCompatActivity() {
                         val token = body?.token
 
                         if (user != null && token != null) {
+
+                            // Admin TIDAK BOLEH masuk dari aplikasi Android.
+                            // Admin nanti login lewat Laravel Dashboard.
+                            if (user.role == "admin") {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Admin login melalui dashboard Laravel.",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                return
+                            }
+
                             session.saveLogin(
                                 userId = user.id,
                                 name = user.name,
@@ -111,16 +123,9 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
 
-                            if (user.role == "admin") {
-                                startActivity(
-                                    Intent(this@LoginActivity, AdminMainActivity::class.java)
-                                )
-                            } else {
-                                startActivity(
-                                    Intent(this@LoginActivity, MainActivity::class.java)
-                                )
-                            }
-
+                            startActivity(
+                                Intent(this@LoginActivity, MainActivity::class.java)
+                            )
                             finish()
                         }
                     } else {

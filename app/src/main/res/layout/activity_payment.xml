@@ -3,32 +3,84 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="22dp">
+        android:paddingStart="22dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="34dp">
 
-        <TextView
-            android:id="@+id/tvBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="←"
-            android:textColor="@color/blue_primary"
-            android:textSize="28sp" />
-
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-28dp"
-            android:text="Pembayaran"
-            android:textAlignment="center"
-            android:textColor="@color/text_dark"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_height="70dp">
+
+            <TextView
+                android:id="@+id/tvBack"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:background="@drawable/bg_input"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:text="‹"
+                android:textColor="@color/blue_primary"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="145dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/neatify_logo" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:layout_marginTop="12dp">
+
+            <LinearLayout
+                android:layout_width="215dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pembayaran"
+                    android:textColor="@color/text_dark"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="pilih metode pembayaran yang paling nyaman untukmu"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="132dp"
+                android:layout_gravity="end|bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_pembayaran" />
+
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,15 +88,14 @@
             android:text="Ringkasan Pesanan"
             android:textColor="@color/text_dark"
             android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="44dp" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:elevation="5dp"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -54,14 +105,14 @@
                 android:layout_height="wrap_content"
                 android:text="Cuci Kering"
                 android:textColor="@color/text_dark"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvBerat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="9dp"
                 android:text="Berat: 1.0 kg"
                 android:textColor="@color/text_gray"
                 android:textSize="14sp" />
@@ -70,7 +121,7 @@
                 android:id="@+id/tvAlamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="9dp"
                 android:text="Alamat: -"
                 android:textColor="@color/text_gray"
                 android:textSize="14sp" />
@@ -80,22 +131,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
             android:text="Metode Pembayaran"
             android:textColor="@color/text_dark"
             android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="26dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/paySaldo"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="62dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_blue_light_card"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:text="Saldo Dompet"
+            android:text="💳  Saldo Dompet"
             android:textColor="@color/blue_primary"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -103,44 +154,46 @@
         <TextView
             android:id="@+id/payTransfer"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="62dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
+            android:elevation="3dp"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:text="Transfer Bank"
+            android:text="🏦  Transfer Bank"
             android:textColor="@color/text_dark"
             android:textSize="15sp" />
 
         <TextView
             android:id="@+id/payEwallet"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="62dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
+            android:elevation="3dp"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:text="E-Wallet"
+            android:text="📱  E-Wallet"
             android:textColor="@color/text_dark"
             android:textSize="15sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
             android:text="Rincian Biaya"
             android:textColor="@color/text_dark"
             android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="26dp" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:elevation="5dp"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -170,25 +223,32 @@
                 android:textColor="@color/text_dark"
                 android:textSize="14sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="14dp"
+                android:background="#E3EAF4" />
+
             <TextView
                 android:id="@+id/tvTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
                 android:text="Total: Rp0"
                 android:textColor="@color/blue_primary"
-                android:textSize="22sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <Button
+        <TextView
             android:id="@+id/btnPay"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="30dp"
-            android:backgroundTint="@color/blue_primary"
+            android:layout_height="58dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/bg_blue_button"
+            android:elevation="4dp"
+            android:gravity="center"
             android:text="Bayar dan Buat Pesanan"
             android:textColor="@color/white"
             android:textSize="16sp"

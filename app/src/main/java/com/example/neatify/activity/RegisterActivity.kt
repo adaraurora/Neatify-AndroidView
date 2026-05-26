@@ -27,10 +27,6 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.tvBack.setOnClickListener {
-            finish()
-        }
-
         binding.tvLogin.setOnClickListener {
             finish()
         }

@@ -30,16 +30,15 @@ class OrderAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
+        val status = normalizeStatus(item.status)
 
         holder.binding.tvKodeOrder.text = "#${item.kode_order ?: "ORD-${item.id}"}"
-        holder.binding.tvLayanan.text = "${item.layanan ?: "-"} · ${item.berat}kg"
+        holder.binding.tvLayanan.text = "${item.layanan ?: "Laundry"} · ${item.berat}kg"
         holder.binding.tvTotal.text = "Rp${formatRupiah(item.total_harga)}"
         holder.binding.tvEstimasi.text = "Estimasi selesai\n${item.estimasi_selesai ?: "-"}"
+        holder.binding.tvStatus.text = formatStatus(status)
 
-        val statusText = formatStatus(item.status)
-        holder.binding.tvStatus.text = statusText
-
-        when (item.status) {
+        when (status) {
             "selesai" -> {
                 holder.binding.tvStatus.setBackgroundResource(R.drawable.bg_status_green)
                 holder.binding.tvStatus.setTextColor(Color.parseColor("#2E7D32"))
@@ -59,6 +58,16 @@ class OrderAdapter(
         holder.itemView.setOnClickListener {
             onClick(item)
         }
+    }
+
+    private fun normalizeStatus(status: String?): String {
+        return status
+            ?.lowercase()
+            ?.trim()
+            ?.replace("sedang dicuci", "dicuci")
+            ?.replace("disetrika", "setrika")
+            ?.replace("diantar", "dikirim")
+            ?: ""
     }
 
     private fun formatStatus(status: String?): String {

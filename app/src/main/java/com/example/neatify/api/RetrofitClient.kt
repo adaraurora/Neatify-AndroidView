@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
     // GANTI IP INI SESUAI IP LAPTOP KAMU
-    private const val BASE_URL = "http://192.168.18.46:8000/api/"
+    private const val BASE_URL = "http://192.168.137.110:8000/api/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

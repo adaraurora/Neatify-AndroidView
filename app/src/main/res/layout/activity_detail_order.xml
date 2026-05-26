@@ -4,103 +4,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="22dp">
+        android:paddingStart="22dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="34dp">
 
-        <TextView
-            android:id="@+id/tvBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="←"
-            android:textColor="@color/blue_primary"
-            android:textSize="28sp"
-            android:layout_marginTop="22dp" />
-
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Detail Pesanan"
-            android:textAlignment="center"
-            android:textColor="@color/text_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="-28dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
-            android:background="@drawable/bg_card"
-            android:elevation="3dp"
-            android:orientation="vertical"
-            android:padding="18dp">
+            android:layout_height="70dp">
 
             <TextView
-                android:id="@+id/tvKodeOrder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#ORD-00000"
-                android:textColor="@color/text_dark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_status_blue"
+                android:id="@+id/tvBack"
+                android:layout_width="44dp"
+                android:layout_height="70dp"
+                android:layout_gravity="start|center_vertical"
+                android:background="@drawable/bg_input"
                 android:gravity="center"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:text="Dijemput"
+                android:text="‹"
                 android:textColor="@color/blue_primary"
-                android:textSize="12sp"
+                android:textSize="34sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvEstimasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="Estimasi selesai: -"
-                android:textColor="@color/text_gray"
-                android:textSize="13sp" />
+            <ImageView
+                android:layout_width="145dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/neatify_logo" />
 
-        </LinearLayout>
+        </FrameLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Progress Laundry"
+            android:layout_marginTop="14dp"
+            android:text="Detail Pesanan"
             android:textColor="@color/text_dark"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="26dp" />
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:layout_height="84dp"
+            android:layout_marginTop="18dp"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="12dp"
             android:weightSum="4">
 
             <TextView
                 android:id="@+id/stepDijemput"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="●\nDijemput"
+                android:text="●\n1\nDijemput"
+                android:textAlignment="center"
                 android:textColor="@color/blue_primary"
                 android:textSize="11sp"
                 android:textStyle="bold" />
@@ -108,69 +74,162 @@
             <TextView
                 android:id="@+id/stepDicuci"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="●\nDicuci"
+                android:text="●\n2\nDicuci"
+                android:textAlignment="center"
                 android:textColor="#C7D3E0"
                 android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/stepSetrika"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="●\nSetrika"
+                android:text="●\n3\nSetrika"
+                android:textAlignment="center"
                 android:textColor="#C7D3E0"
                 android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/stepDikirim"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="●\nDikirim"
+                android:text="●\n4\nDikirim"
+                android:textAlignment="center"
                 android:textColor="#C7D3E0"
                 android:textSize="11sp" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Detail Cucian"
-            android:textColor="@color/text_dark"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="26dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:elevation="5dp"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvKodeOrder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="#ORD-00000"
+                    android:textColor="@color/text_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_status_blue"
+                    android:gravity="center"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="Sedang Dicuci"
+                    android:textColor="@color/blue_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvEstimasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Estimasi selesai: -"
+                android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detail Cucian"
+                android:textColor="@color/text_dark"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="145dp"
+                android:layout_gravity="end|bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_detail_pesanan" />
+
+            <LinearLayout
+                android:layout_width="181dp"
+                android:layout_height="114dp"
+                android:layout_gravity="start|bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvLayanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Layanan: -"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvBerat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Berat: -"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvCatatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Catatan: -"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_card"
+            android:elevation="4dp"
             android:orientation="vertical"
             android:padding="18dp">
 
             <TextView
-                android:id="@+id/tvLayanan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Layanan: -"
+                android:text="Alamat"
                 android:textColor="@color/text_dark"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tvBerat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Berat: -"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp" />
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvAlamat"
@@ -178,84 +237,87 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Alamat: -"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tvCatatan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Catatan: -"
-                android:textColor="@color/text_dark"
+                android:textColor="@color/text_gray"
                 android:textSize="14sp" />
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rincian Pembayaran"
-            android:textColor="@color/text_dark"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="26dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:elevation="4dp"
             android:orientation="vertical"
             android:padding="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Pembayaran"
+                android:textColor="@color/text_dark"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvOngkir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:text="Ongkir: Rp0"
-                android:textColor="@color/text_dark"
+                android:textColor="@color/text_gray"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvDiskon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:text="Diskon: Rp0"
-                android:textColor="@color/text_dark"
+                android:textColor="@color/text_gray"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvMetodePembayaran"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:text="Metode: -"
-                android:textColor="@color/text_dark"
+                android:textColor="@color/text_gray"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvStatusPembayaran"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:text="Status Pembayaran: -"
-                android:textColor="@color/text_dark"
+                android:textColor="@color/text_gray"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="14dp"
                 android:text="Total: Rp0"
-                android:textColor="@color/blue_primary"
-                android:textSize="20sp"
+                android:textColor="@color/text_dark"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnHubungiDriver"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center"
+            android:text="☎ Hubungi Driver"
+            android:textColor="@color/blue_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

@@ -31,6 +31,14 @@ class DetailOrderActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.btnHubungiDriver.setOnClickListener {
+            Toast.makeText(
+                this,
+                "Fitur hubungi driver belum tersedia.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
         if (orderId == 0) {
             Toast.makeText(this, "ID pesanan tidak valid", Toast.LENGTH_SHORT).show()
             finish()
@@ -80,23 +88,26 @@ class DetailOrderActivity : AppCompatActivity() {
     }
 
     private fun showOrder(order: Order) {
+        val status = normalizeStatus(order.status)
+
         binding.tvKodeOrder.text = "#${order.kode_order ?: "ORD-${order.id}"}"
-        binding.tvStatus.text = formatStatus(order.status)
+        binding.tvStatus.text = formatStatus(status)
         binding.tvEstimasi.text = "Estimasi selesai: ${order.estimasi_selesai ?: "-"}"
 
         binding.tvLayanan.text = "Layanan: ${order.layanan ?: "-"}"
         binding.tvBerat.text = "Berat: ${order.berat} kg"
-        binding.tvAlamat.text = "Alamat: ${order.alamat ?: "-"}"
+        binding.tvAlamat.text = order.alamat ?: "-"
         binding.tvCatatan.text = "Catatan: ${order.catatan ?: "-"}"
 
         binding.tvOngkir.text = "Ongkir: Rp${formatRupiah(order.ongkir ?: 0)}"
         binding.tvDiskon.text = "Diskon: Rp${formatRupiah(order.diskon ?: 0)}"
-        binding.tvMetodePembayaran.text = "Metode: ${order.metode_pembayaran ?: "-"}"
-        binding.tvStatusPembayaran.text = "Status Pembayaran: ${formatPaymentStatus(order.status_pembayaran)}"
-        binding.tvTotal.text = "Total: Rp${formatRupiah(order.total_harga)}"
+        binding.tvMetodePembayaran.text = "Metode: ${formatPaymentMethod(order.metode_pembayaran)}"
+        binding.tvStatusPembayaran.text =
+            "Status Pembayaran: ${formatPaymentStatus(order.status_pembayaran)}"
+        binding.tvTotal.text = "Rp${formatRupiah(order.total_harga)}"
 
-        updateStatusStyle(order.status)
-        updateProgress(order.status)
+        updateStatusStyle(status)
+        updateProgress(status)
     }
 
     private fun updateStatusStyle(status: String?) {
@@ -146,6 +157,10 @@ class DetailOrderActivity : AppCompatActivity() {
                 activeStep(binding.stepSetrika)
                 activeStep(binding.stepDikirim)
             }
+
+            else -> {
+                activeStep(binding.stepDijemput)
+            }
         }
     }
 
@@ -157,6 +172,16 @@ class DetailOrderActivity : AppCompatActivity() {
     private fun resetStep(textView: TextView) {
         textView.setTextColor(Color.parseColor("#C7D3E0"))
         textView.setTypeface(null, android.graphics.Typeface.NORMAL)
+    }
+
+    private fun normalizeStatus(status: String?): String {
+        return status
+            ?.lowercase()
+            ?.trim()
+            ?.replace("sedang dicuci", "dicuci")
+            ?.replace("disetrika", "setrika")
+            ?.replace("diantar", "dikirim")
+            ?: ""
     }
 
     private fun formatStatus(status: String?): String {
@@ -172,10 +197,22 @@ class DetailOrderActivity : AppCompatActivity() {
     }
 
     private fun formatPaymentStatus(status: String?): String {
-        return when (status) {
+        return when (status?.lowercase()?.trim()) {
             "belum_bayar" -> "Belum Bayar"
             "sudah_bayar" -> "Sudah Bayar"
+            "paid" -> "Sudah Bayar"
+            "unpaid" -> "Belum Bayar"
             else -> status ?: "-"
+        }
+    }
+
+    private fun formatPaymentMethod(method: String?): String {
+        return when (method?.lowercase()?.trim()) {
+            "wallet" -> "Saldo Dompet"
+            "transfer" -> "Transfer Bank"
+            "cash" -> "Cash"
+            "ewallet" -> "E-Wallet"
+            else -> method ?: "-"
         }
     }
 
