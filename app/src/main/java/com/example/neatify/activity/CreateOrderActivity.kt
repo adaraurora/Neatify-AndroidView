@@ -38,6 +38,7 @@ class CreateOrderActivity : AppCompatActivity() {
 
         setupRecyclerView()
         setupBeratButton()
+        prefillSavedAddress()
         loadServices()
 
         binding.btnBuatPesanan.setOnClickListener {
@@ -48,6 +49,13 @@ class CreateOrderActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.rvSelectServices.layoutManager = GridLayoutManager(this, 2)
         binding.rvSelectServices.setHasFixedSize(false)
+    }
+
+    private fun prefillSavedAddress() {
+        val savedAddress = session.getAddress()
+        if (savedAddress.isNotBlank()) {
+            binding.etAlamat.setText(savedAddress)
+        }
     }
 
     private fun setupBeratButton() {
@@ -154,6 +162,8 @@ class CreateOrderActivity : AppCompatActivity() {
             Toast.makeText(this, "Estimasi biaya belum valid", Toast.LENGTH_SHORT).show()
             return
         }
+
+        session.saveAddress(alamat)
 
         val intent = Intent(this, PaymentActivity::class.java)
         intent.putExtra("USER_ID", session.getUserId())

@@ -9,8 +9,8 @@
         android:id="@+id/imgSplashBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.18"
-        android:scaleType="centerCrop"
+        android:alpha="0.04"
+        android:scaleType="fitCenter"
         android:src="@drawable/bg_splash_laundry" />
 
     <LinearLayout
@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="210dp"
+            android:layout_height="100dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/neatify_logo" />
@@ -36,7 +36,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1">
 
             <ImageView
@@ -50,7 +50,7 @@
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="180dp"
+            android:layout_width="210dp"
             android:layout_height="8dp"
             android:layout_marginTop="18dp"
             android:indeterminate="true"

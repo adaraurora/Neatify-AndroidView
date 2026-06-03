@@ -245,13 +245,13 @@ class HomeFragment : Fragment() {
 
     private fun formatStatus(status: String?): String {
         return when (status?.lowercase()?.trim()) {
-            "dijemput" -> "Dijemput"
-            "dicuci", "sedang dicuci" -> "Sedang Dicuci"
-            "setrika", "disetrika" -> "Disetrika"
-            "dikirim", "diantar" -> "Dikirim"
-            "selesai" -> "Selesai"
-            "dibatalkan" -> "Dibatalkan"
-            else -> "Diproses"
+            "dijemput" -> "🧺 Dijemput"
+            "dicuci", "sedang dicuci" -> "🫧 Sedang Dicuci"
+            "setrika", "disetrika" -> "👕 Disetrika"
+            "dikirim", "diantar" -> "🚚 Dikirim"
+            "selesai" -> "✅ Selesai"
+            "dibatalkan" -> "❌ Dibatalkan"
+            else -> "✨ Diproses"
         }
     }
 

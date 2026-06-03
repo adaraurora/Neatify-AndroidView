@@ -1,21 +1,18 @@
 package com.example.neatify.api
 
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
-    // GANTI IP INI SESUAI IP LAPTOP KAMU
-    private const val BASE_URL = "http://192.168.137.110:8000/api/"
-
-    private val logging = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    }
+    private const val BASE_URL = "http://192.168.18.46:8000/api/"
 
     private val client = OkHttpClient.Builder()
-        .addInterceptor(logging)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
         .build()
 
     val instance: ApiService by lazy {

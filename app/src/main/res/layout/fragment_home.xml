@@ -34,7 +34,7 @@
                 android:layout_height="44dp"
                 android:layout_gravity="end|center_vertical"
                 android:background="@drawable/bg_input"
-                android:elevation="4dp">
+                android:elevation="6dp">
 
                 <ImageView
                     android:id="@+id/ivNotif"
@@ -96,7 +96,7 @@
             android:layout_height="130dp"
             android:layout_marginTop="-8dp"
             android:background="@drawable/bg_card"
-            android:elevation="5dp"
+            android:elevation="7dp"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -263,11 +263,13 @@
             android:layout_height="94dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
-            android:elevation="4dp"
+            android:elevation="6dp"
             android:gravity="center"
-            android:text="Belum ada pesanan aktif"
+            android:text="🫧 Belum ada pesanan aktif
+Pesanan baru akan muncul di sini"
             android:textColor="@color/text_gray"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:lineSpacingExtra="3dp" />
 
         <!-- ACTIVE ORDER CARD -->
         <LinearLayout
@@ -276,7 +278,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
-            android:elevation="5dp"
+            android:elevation="7dp"
             android:orientation="vertical"
             android:padding="18dp"
             android:visibility="gone">
@@ -287,49 +289,74 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvActiveKodeOrder"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="#ORD-00000"
-                    android:textColor="@color/text_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvActiveOrderStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:background="@drawable/bg_status_blue"
-                    android:gravity="center"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:text="Sedang Dicuci"
-                    android:textColor="@color/blue_primary"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvActiveKodeOrder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="#ORD-00000"
+                            android:textColor="@color/text_dark"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvActiveOrderStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_status_blue"
+                            android:gravity="center"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:text="Sedang Dicuci"
+                            android:textColor="@color/blue_primary"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvActiveOrderDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Cuci &amp; Setrika · 3.5kg"
+                        android:textColor="@color/text_dark"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvActiveOrderTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Rp0"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivActiveOrderCute"
+                    android:layout_width="94dp"
+                    android:layout_height="94dp"
+                    android:layout_marginStart="10dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_detail_pesanan" />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvActiveOrderDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Cuci &amp; Setrika · 3.5kg"
-                android:textColor="@color/text_dark"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/tvActiveOrderTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Rp0"
-                android:textColor="@color/blue_primary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -391,10 +418,10 @@
         <!-- PROMO -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="180dp"
             android:layout_marginTop="22dp"
             android:background="@drawable/bg_promo"
-            android:elevation="4dp">
+            android:elevation="6dp">
 
             <ImageView
                 android:layout_width="match_parent"

@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center_vertical"
                 android:background="@drawable/bg_input"
-                android:elevation="4dp"
+                android:elevation="6dp"
                 android:gravity="center"
                 android:text="‹"
                 android:textColor="@color/blue_primary"
@@ -102,7 +102,7 @@
             android:layout_height="142dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_card"
-            android:elevation="5dp"
+            android:elevation="7dp"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -229,7 +229,7 @@
             android:layout_height="112dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_promo"
-            android:elevation="5dp"
+            android:elevation="7dp"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -265,7 +265,7 @@
             android:layout_height="58dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_blue_button"
-            android:elevation="4dp"
+            android:elevation="6dp"
             android:gravity="center"
             android:text="Lanjut ke Pembayaran"
             android:textColor="@color/white"

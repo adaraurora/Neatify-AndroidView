@@ -55,11 +55,11 @@ class SelectServiceAdapter(
 
     private fun getIcon(nama: String): String {
         return when {
-            nama.contains("Setrika", ignoreCase = true) -> "♨"
+            nama.contains("Setrika", ignoreCase = true) -> "🧺"
             nama.contains("Sepatu", ignoreCase = true) -> "👟"
-            nama.contains("Selimut", ignoreCase = true) -> "▣"
-            nama.contains("Bedding", ignoreCase = true) -> "▤"
-            nama.contains("Cuci", ignoreCase = true) -> "♨"
+            nama.contains("Selimut", ignoreCase = true) -> "▤"
+            nama.contains("Bedding", ignoreCase = true) -> "🛏️"
+            nama.contains("Cuci", ignoreCase = true) -> "🫧"
             else -> "◎"
         }
     }

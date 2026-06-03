@@ -2,41 +2,68 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="22dp">
+        android:paddingStart="22dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="130dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profil"
-            android:textColor="@color/text_dark"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginTop="40dp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="190dp">
+
+            <ImageView
+                android:layout_width="118dp"
+                android:layout_height="70dp"
+                android:layout_gravity="top|start"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/neatify_logo" />
+
+            <ImageView
+                android:layout_width="230dp"
+                android:layout_height="170dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bg_splash_laundry" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:text="Profil"
+                android:textColor="@color/text_dark"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="118dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:elevation="7dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="18dp">
 
             <TextView
-                android:layout_width="62dp"
-                android:layout_height="62dp"
-                android:background="@drawable/bg_nav_circle"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_circle_primary"
                 android:gravity="center"
                 android:text="A"
                 android:textColor="@color/white"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -46,21 +73,41 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvProfileName"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nama User"
-                    android:textColor="@color/text_dark"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adara"
+                        android:textColor="@color/text_dark"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/bg_status_blue"
+                        android:gravity="center"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="Member"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvProfilePhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="08123456789"
+                    android:layout_marginTop="5dp"
+                    android:text="0812 3456 7890"
                     android:textColor="@color/text_gray"
                     android:textSize="13sp" />
 
@@ -72,17 +119,15 @@
                     android:text="email@gmail.com"
                     android:textColor="@color/text_gray"
                     android:textSize="13sp" />
-
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="86dp"
-            android:layout_marginTop="18dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:elevation="7dp"
             android:orientation="horizontal"
             android:padding="16dp">
 
@@ -99,17 +144,21 @@
                     android:layout_height="wrap_content"
                     android:text="Rp0"
                     android:textColor="@color/blue_primary"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Saldo"
+                    android:text="Saldo Dompet"
                     android:textColor="@color/text_gray"
                     android:textSize="12sp" />
-
             </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/stroke_soft" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -124,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:textColor="@color/blue_primary"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -133,64 +182,98 @@
                     android:text="Poin"
                     android:textColor="@color/text_gray"
                     android:textSize="12sp" />
-
             </LinearLayout>
-
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="Informasi Akun"
             android:textColor="@color/text_dark"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="26dp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvProfileAlamat"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="58dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
+            android:elevation="4dp"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:text="Alamat: -"
+            android:text="📍  Alamat Saya  ›"
             android:textColor="@color/text_dark"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tvWalletMenu"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
+            android:elevation="4dp"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
-            android:text="Dompet dan Riwayat Saldo  ›"
-            android:textColor="@color/text_dark" />
+            android:paddingEnd="18dp"
+            android:text="💳  Dompet dan Riwayat Saldo  ›"
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tvNotifMenu"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
+            android:elevation="4dp"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
-            android:text="Bantuan  ›"
-            android:textColor="@color/text_dark" />
+            android:paddingEnd="18dp"
+            android:text="🔔  Notifikasi  ›"
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
 
-        <Button
+        <TextView
+            android:id="@+id/tvSecurityMenu"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_card"
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:text="🛡️  Keamanan Akun  ›"
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvHelpMenu"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_card"
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:text="❔  Bantuan  ›"
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginBottom="30dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/bg_logout_outline"
+            android:gravity="center"
             android:text="Keluar"
-            android:textColor="#D32F2F"
-            android:backgroundTint="@color/white" />
-
+            android:textColor="#D94A4A"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
-
 </ScrollView>

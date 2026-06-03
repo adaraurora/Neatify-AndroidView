@@ -1,10 +1,8 @@
 package com.example.neatify.api
 
 import com.example.neatify.model.DeleteResponse
-import com.example.neatify.model.LoginRequest
 import com.example.neatify.model.LoginResponse
 import com.example.neatify.model.Order
-import com.example.neatify.model.RegisterRequest
 import com.example.neatify.model.ServiceResponse
 import com.example.neatify.model.OrderRequest
 import com.example.neatify.model.OrderResponse
@@ -15,6 +13,7 @@ import com.example.neatify.model.ServiceSingleResponse
 import com.example.neatify.model.User
 import com.example.neatify.model.TopUpRequest
 import com.example.neatify.model.WalletTransactionResponse
+import okhttp3.ResponseBody
 import retrofit2.http.DELETE
 import retrofit2.http.Path
 import retrofit2.Call
@@ -28,13 +27,13 @@ interface ApiService {
 
     @POST("login")
     fun login(
-        @Body request: LoginRequest
-    ): Call<LoginResponse>
+        @Body request: Map<String, String>
+    ): Call<ResponseBody>
 
     @POST("register")
     fun register(
-        @Body request: RegisterRequest
-    ): Call<LoginResponse>
+        @Body request: Map<String, String>
+    ): Call<ResponseBody>
 
     @GET("services")
     fun getServices(): Call<ServiceResponse>

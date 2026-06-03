@@ -32,7 +32,31 @@ class SessionManager(context: Context) {
         return pref.getString("role", "user") ?: "user"
     }
 
+    fun saveAddress(address: String) {
+        pref.edit()
+            .putString("saved_address", address)
+            .apply()
+    }
+
+    fun getAddress(): String {
+        return pref.getString("saved_address", "") ?: ""
+    }
+
+    fun saveDemoPassword(password: String) {
+        pref.edit()
+            .putString("demo_password", password)
+            .apply()
+    }
+
+    fun getDemoPassword(): String {
+        return pref.getString("demo_password", "") ?: ""
+    }
+
     fun logout() {
+        val savedAddress = getAddress()
         pref.edit().clear().apply()
+        if (savedAddress.isNotEmpty()) {
+            saveAddress(savedAddress)
+        }
     }
 }

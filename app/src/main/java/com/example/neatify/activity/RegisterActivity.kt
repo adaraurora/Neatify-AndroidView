@@ -4,12 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.neatify.R
 import com.example.neatify.api.RetrofitClient
 import com.example.neatify.databinding.ActivityRegisterBinding
-import com.example.neatify.model.LoginResponse
-import com.example.neatify.model.RegisterRequest
+import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +40,8 @@ class RegisterActivity : AppCompatActivity() {
             toggleConfirmPassword()
         }
 
+        binding.btnRegister.isEnabled = true
+        binding.btnRegister.isClickable = true
         binding.btnRegister.setOnClickListener {
             registerUser()
         }
@@ -124,44 +127,94 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        val request = RegisterRequest(
-            name = name,
-            phone = phone,
-            email = email,
-            password = password
+        binding.btnRegister.isEnabled = false
+        binding.btnRegister.text = "Memproses..."
+
+        val request = mutableMapOf<String, String>(
+            "name" to name,
+            "phone" to phone,
+            "nomor_telepon" to phone,
+            "no_telepon" to phone,
+            "password" to password,
+            "password_confirmation" to confirmPassword,
+            "confirm_password" to confirmPassword
         )
 
+        if (!email.isNullOrEmpty()) {
+            request["email"] = email
+        }
+
         RetrofitClient.instance.register(request)
-            .enqueue(object : Callback<LoginResponse> {
+            .enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(
-                    call: Call<LoginResponse>,
-                    response: Response<LoginResponse>
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
                 ) {
-                    if (response.isSuccessful && response.body()?.status == true) {
+                    binding.btnRegister.isEnabled = true
+                    binding.btnRegister.text = "Daftar Sekarang"
+
+                    val raw = response.body()?.string()
+                        ?: response.errorBody()?.string()
+                        ?: ""
+
+                    if (!response.isSuccessful) {
+                        showError("Register gagal (${response.code()})", extractMessage(raw, "Cek data kamu"))
+                        return
+                    }
+
+                    try {
+                        val json = JSONObject(raw)
+                        val status = json.optBoolean("status", true)
+                        val message = json.optString("message", "Registrasi berhasil. Silakan login.")
+
+                        if (status) {
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                            finish()
+                        } else {
+                            showError("Register gagal", message)
+                        }
+
+                    } catch (e: Exception) {
+                        // Kalau Laravel sukses tapi balasannya bukan JSON, tetap arahkan ke login.
+                        // Ini buat nyelametin demo dari backend yang suka kirim response ajaib.
                         Toast.makeText(
                             this@RegisterActivity,
-                            "Registrasi berhasil. Silakan login.",
+                            "Register diproses. Silakan coba login.",
                             Toast.LENGTH_SHORT
                         ).show()
-
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                         finish()
-                    } else {
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            "Registrasi gagal. Cek data kamu.",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
                 }
 
-                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Gagal konek: ${t.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    binding.btnRegister.isEnabled = true
+                    binding.btnRegister.text = "Daftar Sekarang"
+                    showError("Register gagal konek", t.message ?: "Tidak ada detail error")
                 }
             })
+    }
+
+    private fun extractMessage(raw: String, fallback: String): String {
+        return try {
+            val json = JSONObject(raw)
+            json.optString("message", raw.ifEmpty { fallback })
+        } catch (e: Exception) {
+            raw.ifEmpty { fallback }.take(500)
+        }
+    }
+
+    private fun showError(title: String, message: String) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("Oke", null)
+            .show()
     }
 }

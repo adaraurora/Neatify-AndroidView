@@ -59,7 +59,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/bg_card"
-        android:elevation="3dp"
+        android:elevation="7dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">

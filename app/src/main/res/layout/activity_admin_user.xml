@@ -32,7 +32,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="42dp"
         android:background="@drawable/bg_card"
-        android:elevation="3dp"
+        android:elevation="7dp"
         android:gravity="center_vertical"
         android:paddingStart="18dp"
         android:text="Total pelanggan: 0"

@@ -2,6 +2,7 @@ package com.example.neatify.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.neatify.R
 import com.example.neatify.databinding.ActivityOnboardingBinding
@@ -12,21 +13,21 @@ class OnboardingActivity : AppCompatActivity() {
     private var currentPage = 0
 
     private val titles = arrayOf(
-        "Laundry Bersih,\nTanpa Repot",
-        "Laundry Cepat\nTanpa Antri",
-        "Lacak Pesanan\nSecara Real-time"
+        "Laundry cepat\ntanpa ribet ✨",
+        "Lacak pesanan\nreal-time ✨",
+        "Siap tampil rapi\nsetiap hari ✨"
     )
 
     private val descriptions = arrayOf(
-        "Layanan laundry rapi dan praktis untuk kebutuhan harianmu.",
-        "Pesan layanan laundry kapan saja dan kami yang urus sisanya.",
-        "Pantau status cucianmu secara langsung hingga selesai."
+        "Pesan layanan laundry favoritmu dengan mudah dan praktis.",
+        "Pantau setiap proses pesananmu, dari dijemput hingga diantar ke lokasi.",
+        "Pakaian bersih, wangi, dan rapi. Pembayaran mudah, hidup lebih praktis."
     )
 
     private val images = intArrayOf(
         R.drawable.bg_splash_laundry,
-        R.drawable.img_onboarding_order,
-        R.drawable.img_onboarding_tracking
+        R.drawable.img_onboarding_tracking,
+        R.drawable.img_onboarding_order
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,16 +38,14 @@ class OnboardingActivity : AppCompatActivity() {
 
         showPage()
 
-        binding.btnNext.setOnClickListener {
+        binding.main.setOnClickListener {
             if (currentPage < titles.lastIndex) {
                 currentPage++
                 showPage()
-            } else {
-                goToLogin()
             }
         }
 
-        binding.tvSkip.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             goToLogin()
         }
     }
@@ -56,15 +55,17 @@ class OnboardingActivity : AppCompatActivity() {
         binding.tvTitle.text = titles[currentPage]
         binding.tvDesc.text = descriptions[currentPage]
 
-        binding.btnNext.text =
-            if (currentPage == titles.lastIndex) "Mulai Sekarang" else "Lanjut"
+        binding.btnNext.visibility =
+            if (currentPage == titles.lastIndex) View.VISIBLE else View.GONE
 
         binding.dot1.setBackgroundResource(
             if (currentPage == 0) R.drawable.bg_dot_active else R.drawable.bg_dot_inactive
         )
+
         binding.dot2.setBackgroundResource(
             if (currentPage == 1) R.drawable.bg_dot_active else R.drawable.bg_dot_inactive
         )
+
         binding.dot3.setBackgroundResource(
             if (currentPage == 2) R.drawable.bg_dot_active else R.drawable.bg_dot_inactive
         )

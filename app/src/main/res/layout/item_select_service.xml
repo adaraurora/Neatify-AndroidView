@@ -5,7 +5,7 @@
     android:layout_height="110dp"
     android:layout_margin="8dp"
     android:background="@drawable/bg_card"
-    android:elevation="3dp"
+    android:elevation="7dp"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp">

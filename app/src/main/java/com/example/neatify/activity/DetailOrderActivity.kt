@@ -1,9 +1,13 @@
 package com.example.neatify.activity
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.neatify.R
 import com.example.neatify.api.RetrofitClient
@@ -19,6 +23,9 @@ class DetailOrderActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailOrderBinding
     private var orderId: Int = 0
 
+    // Ganti nomor ini ke nomor admin/driver asli. Format wajib 62, bukan 08.
+    private val adminWhatsappNumber = "6285329111850"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,11 +39,7 @@ class DetailOrderActivity : AppCompatActivity() {
         }
 
         binding.btnHubungiDriver.setOnClickListener {
-            Toast.makeText(
-                this,
-                "Fitur hubungi driver belum tersedia.",
-                Toast.LENGTH_SHORT
-            ).show()
+            openWhatsappAdmin()
         }
 
         if (orderId == 0) {
@@ -46,6 +49,30 @@ class DetailOrderActivity : AppCompatActivity() {
         }
 
         loadOrderDetail()
+    }
+
+
+    private fun openWhatsappAdmin() {
+        val kodeOrder = runCatching { binding.tvKodeOrder.text.toString() }.getOrDefault("pesanan saya")
+        val message = Uri.encode("Halo Admin Neatify, saya ingin menanyakan status $kodeOrder.")
+        val url = "https://wa.me/$adminWhatsappNumber?text=$message"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            AlertDialog.Builder(this)
+                .setTitle("WhatsApp tidak bisa dibuka")
+                .setMessage("Tidak ada aplikasi yang bisa membuka WhatsApp/link browser di HP ini. Nomor admin: +$adminWhatsappNumber")
+                .setPositiveButton("Oke", null)
+                .show()
+        } catch (e: Exception) {
+            AlertDialog.Builder(this)
+                .setTitle("Gagal membuka WhatsApp")
+                .setMessage("Coba cek nomor admin atau aplikasi WhatsApp. Nomor admin: +$adminWhatsappNumber")
+                .setPositiveButton("Oke", null)
+                .show()
+        }
     }
 
     private fun loadOrderDetail() {
@@ -186,13 +213,13 @@ class DetailOrderActivity : AppCompatActivity() {
 
     private fun formatStatus(status: String?): String {
         return when (status) {
-            "dijemput" -> "Dijemput"
-            "dicuci" -> "Sedang Dicuci"
-            "setrika" -> "Disetrika"
-            "dikirim" -> "Dikirim"
-            "selesai" -> "Selesai"
-            "dibatalkan" -> "Dibatalkan"
-            else -> "Diproses"
+            "dijemput" -> "🧺 Dijemput"
+            "dicuci" -> "🫧 Sedang Dicuci"
+            "setrika" -> "👕 Disetrika"
+            "dikirim" -> "🚚 Dikirim"
+            "selesai" -> "✅ Selesai"
+            "dibatalkan" -> "❌ Dibatalkan"
+            else -> "✨ Diproses"
         }
     }
 

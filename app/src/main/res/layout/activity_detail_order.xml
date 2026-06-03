@@ -14,18 +14,19 @@
         android:paddingStart="22dp"
         android:paddingTop="24dp"
         android:paddingEnd="22dp"
-        android:paddingBottom="34dp">
+        android:paddingBottom="40dp">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="74dp">
 
             <TextView
                 android:id="@+id/tvBack"
-                android:layout_width="44dp"
-                android:layout_height="70dp"
+                android:layout_width="48dp"
+                android:layout_height="60dp"
                 android:layout_gravity="start|center_vertical"
-                android:background="@drawable/bg_input"
+                android:background="@drawable/bg_input_rounded"
+                android:elevation="4dp"
                 android:gravity="center"
                 android:text="‹"
                 android:textColor="@color/blue_primary"
@@ -33,30 +34,33 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="145dp"
-                android:layout_height="60dp"
+                android:layout_width="130dp"
+                android:layout_height="66dp"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/neatify_logo" />
-
         </FrameLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="10dp"
             android:text="Detail Pesanan"
             android:textColor="@color/text_dark"
-            android:textSize="25sp"
+            android:textSize="27sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="84dp"
-            android:layout_marginTop="18dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_card_blue_tint"
+            android:elevation="3dp"
             android:gravity="center"
             android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:weightSum="4">
 
             <TextView
@@ -65,10 +69,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="●\n1\nDijemput"
+                android:text="🧺\nDijemput"
                 android:textAlignment="center"
                 android:textColor="@color/blue_primary"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -77,10 +81,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="●\n2\nDicuci"
+                android:text="🫧\nDicuci"
                 android:textAlignment="center"
-                android:textColor="#C7D3E0"
-                android:textSize="11sp" />
+                android:textColor="#A7B9CC"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/stepSetrika"
@@ -88,10 +92,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="●\n3\nSetrika"
+                android:text="♨️\nSetrika"
                 android:textAlignment="center"
-                android:textColor="#C7D3E0"
-                android:textSize="11sp" />
+                android:textColor="#A7B9CC"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/stepDikirim"
@@ -99,19 +103,18 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="●\n4\nDikirim"
+                android:text="🚚\nDikirim"
                 android:textAlignment="center"
-                android:textColor="#C7D3E0"
-                android:textSize="11sp" />
-
+                android:textColor="#A7B9CC"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_card"
-            android:elevation="5dp"
+            android:elevation="7dp"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -128,7 +131,7 @@
                     android:layout_weight="1"
                     android:text="#ORD-00000"
                     android:textColor="@color/text_dark"
-                    android:textSize="18sp"
+                    android:textSize="19sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -137,13 +140,12 @@
                     android:layout_height="30dp"
                     android:background="@drawable/bg_status_blue"
                     android:gravity="center"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
                     android:text="Sedang Dicuci"
                     android:textColor="@color/blue_primary"
                     android:textSize="11sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
 
             <TextView
@@ -154,12 +156,11 @@
                 android:text="Estimasi selesai: -"
                 android:textColor="@color/text_gray"
                 android:textSize="13sp" />
-
         </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="170dp"
             android:layout_marginTop="18dp">
 
             <TextView
@@ -171,16 +172,16 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="170dp"
-                android:layout_height="145dp"
+                android:layout_width="188dp"
+                android:layout_height="158dp"
                 android:layout_gravity="end|bottom"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/img_detail_pesanan" />
 
             <LinearLayout
-                android:layout_width="181dp"
-                android:layout_height="114dp"
+                android:layout_width="190dp"
+                android:layout_height="120dp"
                 android:layout_gravity="start|bottom"
                 android:orientation="vertical">
 
@@ -209,24 +210,22 @@
                     android:text="Catatan: -"
                     android:textColor="@color/text_gray"
                     android:textSize="13sp" />
-
             </LinearLayout>
-
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="14dp"
             android:background="@drawable/bg_card"
-            android:elevation="4dp"
+            android:elevation="6dp"
             android:orientation="vertical"
             android:padding="18dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alamat"
+                android:text="📍  Alamat"
                 android:textColor="@color/text_dark"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -239,22 +238,21 @@
                 android:text="Alamat: -"
                 android:textColor="@color/text_gray"
                 android:textSize="14sp" />
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_card"
-            android:elevation="4dp"
+            android:elevation="6dp"
             android:orientation="vertical"
             android:padding="18dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total Pembayaran"
+                android:text="💳  Total Pembayaran"
                 android:textColor="@color/text_dark"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -304,7 +302,6 @@
                 android:textColor="@color/text_dark"
                 android:textSize="24sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
 
         <TextView
@@ -312,13 +309,12 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_input"
+            android:background="@drawable/bg_input_rounded"
+            android:elevation="3dp"
             android:gravity="center"
-            android:text="☎ Hubungi Driver"
+            android:text="☎  Hubungi Driver / Admin"
             android:textColor="@color/blue_primary"
             android:textSize="15sp"
             android:textStyle="bold" />
-
     </LinearLayout>
-
 </ScrollView>

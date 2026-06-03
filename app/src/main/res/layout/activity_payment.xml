@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center_vertical"
                 android:background="@drawable/bg_input"
-                android:elevation="4dp"
+                android:elevation="6dp"
                 android:gravity="center"
                 android:text="‹"
                 android:textColor="@color/blue_primary"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
-            android:elevation="5dp"
+            android:elevation="7dp"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -157,7 +157,7 @@
             android:layout_height="62dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:elevation="7dp"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
@@ -171,7 +171,7 @@
             android:layout_height="62dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
+            android:elevation="7dp"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
@@ -193,7 +193,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
-            android:elevation="5dp"
+            android:elevation="7dp"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -247,7 +247,7 @@
             android:layout_height="58dp"
             android:layout_marginTop="26dp"
             android:background="@drawable/bg_blue_button"
-            android:elevation="4dp"
+            android:elevation="6dp"
             android:gravity="center"
             android:text="Bayar dan Buat Pesanan"
             android:textColor="@color/white"

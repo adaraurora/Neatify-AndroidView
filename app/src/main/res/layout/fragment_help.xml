@@ -2,137 +2,206 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="22dp">
+        android:paddingStart="22dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="130dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bantuan"
-            android:textColor="@color/text_dark"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginTop="40dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ada masalah? Tenang, jangan langsung panik dulu."
-            android:textColor="@color/text_gray"
-            android:textSize="14sp"
-            android:layout_marginTop="6dp" />
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/bg_promo"
-            android:elevation="3dp"
-            android:orientation="vertical"
-            android:padding="18dp">
+            android:layout_height="178dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="124dp"
+                android:layout_height="72dp"
+                android:layout_gravity="top|start"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/neatify_logo" />
+
+            <ImageView
+                android:layout_width="205dp"
+                android:layout_height="150dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_detail_pesanan" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Customer Service"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_gravity="bottom|start"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Butuh bantuan soal pesanan, pembayaran, atau status laundry?"
-                android:textColor="@color/white"
-                android:textSize="13sp"
-                android:layout_marginTop="6dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bantuan"
+                    android:textColor="@color/text_dark"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/btnChatAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:text="Chat Admin"
-                android:textColor="@color/blue_primary"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Pilih topik bantuan atau chat admin."
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </FrameLayout>
 
-        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_input_rounded"
+            android:elevation="5dp"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="Cari bantuan..."
+            android:textColor="@color/text_gray"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pertanyaan Umum"
+            android:layout_marginTop="24dp"
+            android:text="Topik Bantuan"
             android:textColor="@color/text_dark"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="26dp" />
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/itemHelpOrder"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="58dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
-            android:padding="16dp"
-            android:text="Bagaimana cara membuat pesanan?\n\nKlik tombol + di tengah navigasi bawah, pilih layanan, isi berat cucian dan alamat, lalu lanjut ke pembayaran."
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:text="Cara Membuat Pesanan    ›"
             android:textColor="@color/text_dark"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/itemHelpPayment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
-            android:padding="16dp"
-            android:text="Bagaimana melihat status laundry?\n\nBuka menu Pesanan atau lihat card Pesanan Aktif di halaman Home. Status akan berubah setelah admin memperbaruinya."
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:text="Metode Pembayaran    ›"
             android:textColor="@color/text_dark"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/itemHelpDelivery"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
-            android:padding="16dp"
-            android:text="Metode pembayaran apa saja yang tersedia?\n\nSaat ini tersedia Saldo Dompet, Transfer Bank, dan E-Wallet. Untuk demo, metode ini tersimpan ke database tanpa payment gateway asli."
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:text="Pengambilan dan Pengiriman    ›"
             android:textColor="@color/text_dark"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/itemHelpCancel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
-            android:padding="16dp"
-            android:text="Apa arti status pesanan?\n\nDijemput: cucian akan diambil.\nDicuci: cucian sedang diproses.\nSetrika: cucian sedang disetrika.\nDikirim: cucian sedang dikirim.\nSelesai: pesanan sudah selesai."
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:text="Pembatalan Pesanan    ›"
             android:textColor="@color/text_dark"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/itemHelpRefund"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="30dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_card"
-            android:elevation="3dp"
-            android:padding="16dp"
-            android:text="Bagaimana kalau pesanan dibatalkan?\n\nPesanan yang dibatalkan akan masuk ke tab Dibatalkan di menu Pesanan Saya."
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:text="Refund dan Pengembalian Dana    ›"
             android:textColor="@color/text_dark"
             android:textSize="14sp" />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="126dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg_card_blue_tint"
+            android:elevation="5dp"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="230dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Masih butuh bantuan?"
+                    android:textColor="@color/text_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Chat admin lewat WhatsApp."
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btnChatAdmin"
+                    android:layout_width="132dp"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_blue_button"
+                    android:gravity="center"
+                    android:text="Chat Admin"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="112dp"
+                android:layout_gravity="end|bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_detail_pesanan" />
+        </FrameLayout>
     </LinearLayout>
-
 </ScrollView>
